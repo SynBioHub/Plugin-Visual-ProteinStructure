@@ -3,8 +3,7 @@ import os
 import sys
 import traceback
 
-
-app = Flask(__name__)
+app = Flask(__name__, static_url_path = "", static_folder = "./")
 
 
 @app.route("/status")
@@ -58,21 +57,10 @@ def run():
     filename = os.path.join(cwd, "Test.html")
 
     try:
-        # ~~~~~~~~~~~~ REPLACE THIS SECTION WITH OWN RUN CODE ~~~~~~~~~~~~~~~~~~~
         with open(filename, 'r') as htmlfile:
             result = htmlfile.read()
-
-        # put in the url, uri, and instance given by synbiohub
-        result = result.replace("URL_REPLACE", url)
-        result = result.replace("URI_REPLACE", top_level_url)
-        result = result.replace("INSTANCE_REPLACE", instance_url)
-        result = result.replace("SIZE_REPLACE", str(size))
-        result = result.replace("RDFTYPE_REPLACE", rdf_type)
-        result = result.replace("SHALLOWSBOL_REPLACE", shallow_sbol)
-
-        result = result.replace("REQUEST_REPLACE", str(data))
-        # ~~~~~~~~~~~~~~~~~~~~~~~~~~ END SECTION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
+      
+        print(result,file=sys.stderr)
         return result
     except Exception as e:
         exc_type, exc_obj, exc_tb = sys.exc_info()
