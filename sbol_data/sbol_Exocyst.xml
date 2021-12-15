@@ -1,0 +1,25 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:sbh="https://wiki.synbiohub.org/wiki/Terms/synbiohub#" xmlns:obo="http://purl.obolibrary.org/obo/" xmlns:sbol="http://sbols.org/v2#" xmlns:ns0="http://www.w3.org/ns/prov#">
+  <sbol:ComponentDefinition rdf:about="http://examples.org/EXO84/1">
+    <sbol:sequence rdf:resource="http://examples.org/EXO84_sequence/1"/>
+    <dcterms:title>Exocyst complex component EXO84</dcterms:title>
+    <sbol:displayId>EXO84</sbol:displayId>
+    <dcterms:description>Involved in the secretory pathway as part of the exocyst complex which tethers secretory vesicles to the sites of exocytosis. Plays a role in both the assembly of the exocyst and the polarization of this complex to specific sites of the plasma membrane for exocytosis and to the budding site. Also involved in assembly of the spliceosome.</dcterms:description>
+    <sbh:sourceOrganism rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_4932"/>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:version>1</sbol:version>
+    <sbol:role rdf:resource="http://purl.obolibrary.org/obo/SO_0000804"/>
+    <ns0:wasDerivedFrom rdf:resource="https://pubmed.ncbi.nlm.nih.gov/16249794"/>
+    <obo:OBI_0001617>16249794</obo:OBI_0001617>
+    <sbh:uniprotId>P38261</sbh:uniprotId>
+    <sbol:persistentIdentity rdf:resource="http://examples.org/EXO84"/>
+    <sbh:pdbId>2D2S</sbh:pdbId>
+  </sbol:ComponentDefinition>
+    <sbol:Sequence rdf:about="http://examples.org/EXO84_sequence/1">
+    <sbol:persistentIdentity rdf:resource="http://examples.org/EXO84_sequence"/>
+    <sbol:elements>mvefslkkarnnwkhvkksasspakqktppspakpkqktkknpysdlkdpatsytlptinarersrvatsmqrrlsihntnyapptldysmplpdmpnmivpndnvdsshnnssfttenesvsskgpsnslnlstadlslndssynkvparsamrntvnpsgsndpfnnstslrkmlanphfnakdfvhdklgnasaitidkftsnltdlsiqvqeevklninksyneimtvnndlnvamlelkrvranindlnevldqctkiaekrlqlqdqidqerqgnfnnveshsnspallpplkagqngnlmrrdrssvlilekfwdteldqlfknvegaqkfinstkgrhilmnsanwmelntttgkplqmvqifilndlvliadksrdkqndfivsqcyplkdvtvtqeefstkrllfkfsnsnsslyecrdadecsrlldvirkakddlcdifhveeenskriresfrylqstqqtpgrennrspnknkrrsmggsitpgrnvtgamdqyllqnltlsmhsrprsrdmsstaqrlkfldegveeidielarlrfesavetlldiesqledlserisdeelmllnlislkieqrreaissklsqsilssneivhlksgtenmiklglpeqaldlflqnrsnfiqdlilqigsvdnptnyltqlavirfqtikktvedfqdifkelgakissilvdwcsdevdnhfklidkqllndemlspgsikssrkqidglkavgldfvykldefikknsdkir</sbol:elements>
+    <dcterms:title>Exocyst complex component EXO84 Sequence</dcterms:title>
+    <sbol:displayId>EXO84_sequence</sbol:displayId>
+    <sbol:version>1</sbol:version>
+    <sbol:encoding rdf:resource="http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html"/>
+  </sbol:Sequence>
+</rdf:RDF>

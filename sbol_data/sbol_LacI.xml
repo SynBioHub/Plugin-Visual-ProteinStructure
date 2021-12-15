@@ -1,0 +1,25 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:sbh="https://wiki.synbiohub.org/wiki/Terms/synbiohub#" xmlns:obo="http://purl.obolibrary.org/obo/" xmlns:sbol="http://sbols.org/v2#" xmlns:ns0="http://www.w3.org/ns/prov#">
+  <sbol:ComponentDefinition rdf:about="http://examples.org/LacI/1">
+    <sbol:version>1</sbol:version>
+    <sbol:role rdf:resource="http://purl.obolibrary.org/obo/SO_0000804"/>
+    <sbh:pdbId>1CJG</sbh:pdbId>
+    <sbh:sourceOrganism rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_562"/>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbh:uniprotId>P03023</sbh:uniprotId>
+    <dcterms:title>Lactose operon repressor</dcterms:title>
+    <sbol:sequence rdf:resource="http://examples.org/LacI_sequence/1"/>
+    <sbol:persistentIdentity rdf:resource="http://examples.org/LacI"/>
+    <dcterms:description>Repressor of the lactose operon. Binds allolactose as an inducer.</dcterms:description>
+    <obo:OBI_0001617>10647179</obo:OBI_0001617>
+    <ns0:wasDerivedFrom rdf:resource="https://pubmed.ncbi.nlm.nih.gov/10647179"/>
+    <sbol:displayId>LacI</sbol:displayId>
+  </sbol:ComponentDefinition>
+    <sbol:Sequence rdf:about="http://examples.org/LacI_sequence/1">
+    <sbol:elements>mkpvtlydvaeyagvsyqtvsrvvnqashvsaktrekveaamaelnyipnrvaqqlagkqslligvatsslalhapsqivaaiksradqlgasvvvsmversgveackaavhnllaqrvsgliinyplddqdaiaveaactnvpalfldvsdqtpinsiifshedgtrlgvehlvalghqqiallagplssvsarlrlagwhkyltrnqiqpiaeregdwsamsgfqqtmqmlnegivptamlvandqmalgamraitesglrvgadisvvgyddtedsscyipplttikqdfrllgqtsvdrllqlsqgqavkgnqllpvslvkrkttlapntqtaspraladslmqlarqvsrlesgq</sbol:elements>
+    <sbol:displayId>LacI_sequence</sbol:displayId>
+    <sbol:version>1</sbol:version>
+    <sbol:persistentIdentity rdf:resource="http://examples.org/LacI_sequence"/>
+    <dcterms:title>Lactose operon repressor Sequence</dcterms:title>
+    <sbol:encoding rdf:resource="http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html"/>
+  </sbol:Sequence>
+</rdf:RDF>

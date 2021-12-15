@@ -1,0 +1,25 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:sbh="https://wiki.synbiohub.org/wiki/Terms/synbiohub#" xmlns:obo="http://purl.obolibrary.org/obo/" xmlns:sbol="http://sbols.org/v2#" xmlns:ns0="http://www.w3.org/ns/prov#">
+  <sbol:ComponentDefinition rdf:about="http://examples.org/araC/1">
+    <sbh:pdbId>1XJA</sbh:pdbId>
+    <obo:OBI_0001617>17173282</obo:OBI_0001617>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:version>1</sbol:version>
+    <sbol:role rdf:resource="http://purl.obolibrary.org/obo/SO_0000804"/>
+    <sbh:sourceOrganism rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_562"/>
+    <sbh:uniprotId>P0A9E0</sbh:uniprotId>
+    <ns0:wasDerivedFrom rdf:resource="https://pubmed.ncbi.nlm.nih.gov/17173282"/>
+    <sbol:displayId>araC</sbol:displayId>
+    <sbol:persistentIdentity rdf:resource="http://examples.org/araC"/>
+    <sbol:sequence rdf:resource="http://examples.org/araC_sequence/1"/>
+    <dcterms:title>Arabinose operon regulatory protein</dcterms:title>
+    <dcterms:description>Transcription factor that regulates the expression of several genes involved in the transport and metabolism of L-arabinose</dcterms:description>
+  </sbol:ComponentDefinition>
+ <sbol:Sequence rdf:about="http://examples.org/araC_sequence/1">
+    <sbol:encoding rdf:resource="http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html"/>
+    <dcterms:title>Arabinose operon regulatory protein Sequence</dcterms:title>
+    <sbol:elements>maeaqndpllpgysfnahlvagltpieangyldffidrplgmkgyilnltirgqgvvknqgrefvcrpgdillfppgeihhygrhpearewyhqwvyfrpraywhewlnwpsifantgffrpdeahqphfsdlfgqiinagqgegrysellainlleqlllrrmeaineslhppmdnrvreacqyisdhladsnfdiasvaqhvclspsrlshlfrqqlgisvlswredqrisqaklllsttrmpiatvgrnvgfddqlyfsrvfkkctgaspsefragceekvndvavkls</sbol:elements>
+    <sbol:version>1</sbol:version>
+    <sbol:persistentIdentity rdf:resource="http://examples.org/araC_sequence"/>
+    <sbol:displayId>araC_sequence</sbol:displayId>
+  </sbol:Sequence>
+</rdf:RDF>

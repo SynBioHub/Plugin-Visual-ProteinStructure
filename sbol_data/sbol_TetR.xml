@@ -1,0 +1,25 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:sbh="https://wiki.synbiohub.org/wiki/Terms/synbiohub#" xmlns:obo="http://purl.obolibrary.org/obo/" xmlns:sbol="http://sbols.org/v2#" xmlns:ns0="http://www.w3.org/ns/prov#">
+  <sbol:ComponentDefinition rdf:about="http://examples.org/tetR/1">
+    <sbh:uniprotId>P0ACT4</sbh:uniprotId>
+    <sbol:sequence rdf:resource="http://examples.org/tetR_sequence/1"/>
+    <dcterms:description>TetR is the repressor of the tetracycline resistance element; its N-terminal region forms a helix-turn-helix structure and binds DNA. Binding of tetracycline to TetR reduces the repressor affinity for the tetracycline resistance gene (tetA) promoter operator sites.</dcterms:description>
+    <sbol:version>1</sbol:version>
+    <dcterms:title>Tetracycline repressor protein class D</dcterms:title>
+    <sbh:pdbId>1A6I</sbh:pdbId>
+    <obo:OBI_0001617>9642048</obo:OBI_0001617>
+    <sbol:role rdf:resource="http://purl.obolibrary.org/obo/SO_0000804"/>
+    <sbol:displayId>tetR</sbol:displayId>
+    <ns0:wasDerivedFrom rdf:resource="https://pubmed.ncbi.nlm.nih.gov/9642048"/>
+    <sbol:persistentIdentity rdf:resource="http://examples.org/tetR"/>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbh:sourceOrganism rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_562"/>
+  </sbol:ComponentDefinition>
+    <sbol:Sequence rdf:about="http://examples.org/tetR_sequence/1">
+    <sbol:version>1</sbol:version>
+    <sbol:persistentIdentity rdf:resource="http://examples.org/tetR_sequence"/>
+    <sbol:encoding rdf:resource="http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html"/>
+    <sbol:elements>marlnresvidaalellnetgidglttrklaqklgieqptlywhvknkralldalaveilarhhdyslpaageswqsflrnnamsfrrallryrdgakvhlgtrpdekqydtvetqlrfmtengfslrdglyaisavshftlgavleqqehtaaltdrpaapdenlppllrealqimdsddgeqaflhgleslirgfevqltallqivggdkliipfc</sbol:elements>
+    <dcterms:title>Tetracycline repressor protein class D Sequence</dcterms:title>
+    <sbol:displayId>tetR_sequence</sbol:displayId>
+  </sbol:Sequence>
+</rdf:RDF>

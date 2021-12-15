@@ -1,0 +1,25 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:sbh="https://wiki.synbiohub.org/wiki/Terms/synbiohub#" xmlns:obo="http://purl.obolibrary.org/obo/" xmlns:sbol="http://sbols.org/v2#" xmlns:ns0="http://www.w3.org/ns/prov#">
+  <sbol:ComponentDefinition rdf:about="http://examples.org/GFP/1">
+    <dcterms:description>Energy-transfer acceptor. Its role is to transduce the blue chemiluminescence of the protein aequorin into green fluorescent light by energy transfer. Fluoresces in vivo upon receiving energy from the Ca2+-activated photoprotein aequorin.</dcterms:description>
+    <sbol:role rdf:resource="http://purl.obolibrary.org/obo/SO_0000804"/>
+    <sbol:sequence rdf:resource="http://examples.org/GFP_sequence/1"/>
+    <dcterms:title>Green fluorescent protein</dcterms:title>
+    <ns0:wasDerivedFrom rdf:resource="https://pubmed.ncbi.nlm.nih.gov/17685514"/>
+    <sbol:persistentIdentity rdf:resource="http://examples.org/GFP"/>
+    <sbh:pdbId>1b9c</sbh:pdbId>
+    <sbh:sourceOrganism rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_6100"/>
+    <obo:OBI_0001617>17685514</obo:OBI_0001617>
+    <sbh:uniprotId>P42212</sbh:uniprotId>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:version>1</sbol:version>
+    <sbol:displayId>GFP</sbol:displayId>
+  </sbol:ComponentDefinition>
+    <sbol:Sequence rdf:about="http://examples.org/GFP_sequence/1">
+    <sbol:version>1</sbol:version>
+    <sbol:displayId>GFP_sequence</sbol:displayId>
+    <dcterms:title>Green fluorescent protein Sequence</dcterms:title>
+    <sbol:elements>mskgeelftgvvpilveldgdvnghkfsvsgegegdatygkltlkficttgklpvpwptlvttfsygvqcfsrypdhmkqhdffksampegyvqertiffkddgnyktraevkfegdtlvnrielkgidfkedgnilghkleynynshnvyimadkqkngikvnfkirhniedgsvqladhyqqntpigdgpvllpdnhylstqsalskdpnekrdhmvllefvtaagithgmdelyk</sbol:elements>
+    <sbol:persistentIdentity rdf:resource="http://examples.org/GFP_sequence"/>
+    <sbol:encoding rdf:resource="http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html"/>
+  </sbol:Sequence>
+</rdf:RDF>

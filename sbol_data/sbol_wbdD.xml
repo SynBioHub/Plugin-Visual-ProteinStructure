@@ -1,0 +1,25 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:sbh="https://wiki.synbiohub.org/wiki/Terms/synbiohub#" xmlns:obo="http://purl.obolibrary.org/obo/" xmlns:sbol="http://sbols.org/v2#" xmlns:ns0="http://www.w3.org/ns/prov#">
+  <sbol:ComponentDefinition rdf:about="http://examples.org/wbdD/1">
+    <sbh:uniprotId>J714B7</sbh:uniprotId>
+    <sbh:pdbId>4AX8</sbh:pdbId>
+    <sbol:sequence rdf:resource="http://examples.org/wbdD_sequence/1"/>
+    <sbol:role rdf:resource="http://purl.obolibrary.org/obo/SO_0000141"/>
+    <obo:OBI_0001617>22993091</obo:OBI_0001617>
+    <sbol:persistentIdentity rdf:resource="http://examples.org/wbdD"/>
+    <sbol:version>1</sbol:version>
+    <ns0:wasDerivedFrom rdf:resource="https://pubmed.ncbi.nlm.nih.gov/22993091"/>
+    <dcterms:description>Regulates the length of the LPS O-antigen polysaccharide chain. Stops the polymerization of the chain by phosphorylating and then methylating the phosphate on the terminal sugar. This terminal modification is essential for export of the O-antigen across the inner membrane. WbdD is also required for correct localization of the WbdA mannosyltransferase.</dcterms:description>
+    <sbol:type rdf:resource="http://www.biopax.org/release/biopax-level3.owl#DnaRegion"/>
+    <sbol:displayId>wbdD</sbol:displayId>
+    <sbh:sourceOrganism rdf:resource="http://purl.obolibrary.org/obo/NCBITaxon_562"/>
+    <dcterms:title>O-antigen chain terminator bifunctional methyltransferase/kinase WbdD</dcterms:title>
+  </sbol:ComponentDefinition>
+    <sbol:Sequence rdf:about="http://examples.org/wbdD_sequence/1">
+    <dcterms:title>O-antigen chain terminator bifunctional methyltransferase/kinase WbdD Sequence</dcterms:title>
+    <sbol:persistentIdentity rdf:resource="http://examples.org/wbdD_sequence"/>
+    <sbol:encoding rdf:resource="http://www.chem.qmul.ac.uk/iubmb/misc/naseq.html"/>
+    <sbol:displayId>wbdD_sequence</sbol:displayId>
+    <sbol:version>1</sbol:version>
+    <sbol:elements>mtkdlntlvselpeiyqtifghpewdgdaardcnqrldliteqydnlsralgrplnvldlgcaqgffslslaskgativgidfqqeninvcralaeenpdfaaefrvgrieeviaaleegefdlaiglsvfhhivhlhgidevkrllsrladvtqavilelavkeepfywgvsqpddprelieqcafyrligefdthlspvprpmylvsnhrvlindfnqpfqhwqnqpyagaglahkrsrryffgedyvckffyydmphgiltaeesqrnkyelhneikfltqppagfdapavlahgenaqsgwlvmeklpgrllsdmlaageeidrekilgsllrslaalekqgfwhddvrpwnvmvdarqharlidfgsivttpqdcswptnlvqsffvfvnelfaenkswngfwrsapvhpfnlpqpwsnwlyavwqepverwnfvlllalfekkaklpsaeqqrgateqwiiaqetvllelqsrvrnesagsealrgqihtleqqmaqlqsaqdafvekaqqqvevsheltwlgenmeqlaallqtaqahaqadvqpelppetaellqrleaanreihhlsnenqqlrqeiekihrsrswrmtkgyrylglqihllrqygfvqrckhfikrvlrfvfsfmrkhpqvkhtavnglhklglyqpayrlyrrmnplphsqyqadaqilsqtelqvmhpellppevyeiylkltknk</sbol:elements>
+  </sbol:Sequence>
+</rdf:RDF>

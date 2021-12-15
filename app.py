@@ -2,6 +2,10 @@ from flask import Flask, request, abort
 import os
 import sys
 import traceback
+import xml.etree.ElementTree as ET
+from flask.wrappers import Response
+
+sys.path.append("/usr/lib/python3/dist-packages")
 import pymol
 import urllib
 
@@ -10,7 +14,7 @@ app = Flask(__name__, static_url_path = "", static_folder = "./")
 
 @app.route("/status")
 def status():
-    return("The Visualisation Test Plugin Flask Server is up and running")
+    return("The Visualisation Protein Structure Plugin Flask Server is up and running")
 
 
 @app.route("/evaluate", methods=["POST"])
@@ -18,23 +22,12 @@ def evaluate():
     data = request.get_json(force=True)
     rdf_type = data['type']
 
-    # ~~~~~~~~~~~~ REPLACE THIS SECTION WITH OWN RUN CODE ~~~~~~~~~~~~~~~~~~~
     # uses rdf types
-    accepted_types = {'Activity', 'Agent', 'Association', 'Attachment',
-                      'Collection', 'CombinatorialDerivation', 'Component',
-                      'ComponentDefinition', 'Cut', 'Experiment',
-                      'ExperimentalData', 'FunctionalComponent',
-                      'GenericLocation', 'Implementation', 'Interaction',
-                      'Location', 'MapsTo', 'Measure', 'Model', 'Module',
-                      'ModuleDefinition', 'Participation', 'Plan', 'Range',
-                      'Sequence', 'SequenceAnnotation', 'SequenceConstraint',
-                      'Usage', 'VariableComponent'}
+    accepted_types = {'ComponentDefinition'}
 
-    acceptable = rdf_type in accepted_types
-
-    # # to ensure it shows up on all pages
-    # acceptable = True
-    # ~~~~~~~~~~~~~~~~~~~~~~~~~~ END SECTION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    acceptable = True
+    for curr_type in accepted_types:
+        acceptable = acceptable and (rdf_type == curr_type)
 
     if acceptable:
         return f'The type sent ({rdf_type}) is an accepted type', 200
@@ -44,38 +37,65 @@ def evaluate():
 
 @app.route("/run", methods=["POST"])
 def run():
-    print("In Plugin!!!")
+    plugin_ip = '127.0.0.1'
+    plugin_port = '8900' #'5000'
     data = request.get_json(force=True)
 
-    top_level_url = data['top_level']
+    print("RECEIVED: {}".format(data), file=sys.stderr)
     complete_sbol = data['complete_sbol']
+    #top_level_url = data['top_level']
     instance_url = data['instanceUrl']
-    size = data['size']
-    rdf_type = data['type']
-    shallow_sbol = data['shallow_sbol']
-
-    url = complete_sbol.replace('/sbol', '')
+    #size = data['size']
+    #rdf_type = data['type']
+    #shallow_sbol = data['shallow_sbol']
 
     cwd = os.getcwd()
-    filename = os.path.join(cwd, "Test.html")
+    filename = os.path.join(cwd, "result_template.html")
 
-    #pdb_filename=["4ogs.pdb", "6hl7.pdb"]
-    #pdb_file_id = int(size)
-    #convert_to_png(pdb_filename[pdb_file_id])
-    pdb_links={'https://dev.synbiohub.org/public/igem/gfp/1':'https://files.rcsb.org/download/4OGS.pdb', 'https://dev.synbiohub.org/public/igem/aTc/1':'https://files.rcsb.org/download/6HL7.pdb'}
-    print("Downloading pdb file: {}".format(pdb_links[url]))
-    urllib.request.urlretrieve(pdb_links[url], "protein.pdb")
+    try: 
+        subtest_sbol_url = complete_sbol.replace('public/igem/', 'download/sbol_').replace('/1/sbol','.xml') # This is temporary.
+        sbol_url = subtest_sbol_url # This is temporary.
+        # When using with synbiohub, we should directly use complete_sbol to download the sbol xml. Uncomment the following line and delete the two lines above.
+        # sbol_url = complete_sbol
+       
+        print("Downloading SBOL file: {}".format(sbol_url), file=sys.stderr)
+        urllib.request.urlretrieve(sbol_url, "sbol.xml")
 
-    convert_to_png("protein.pdb")
+        # Parse the SBOL xml to determine pdb id
+        sbol_tree=ET.parse("sbol.xml")
+        sbol_root=sbol_tree.getroot()
+        print("Root = {}".format(sbol_root.tag))
+        print("Attrib = {}".format(sbol_root.attrib))
+
+        for sbol_child in sbol_root:
+            if "ComponentDefinition" in sbol_child.tag:
+                for sbol_child_child in sbol_child:
+                    if "pdbId" in sbol_child_child.tag:
+                        print("pdb_id: {} - {}".format(sbol_child_child.tag, sbol_child_child.text))
+                        pdb_id = sbol_child_child.text.lower()
+
+
+        # Download the pdb file
+        pdb_url_base='https://www.ebi.ac.uk/pdbe/entry-files/download/pdb'
+        pdb_file_url = pdb_url_base + pdb_id + '.ent';
+        print("Downloading pdb file: {}".format(pdb_file_url), file=sys.stderr)
+        urllib.request.urlretrieve(pdb_file_url, "protein.pdb")
+
+        # Get the png image using pymol
+        convert_to_png("protein.pdb")
     
-    print("Created PNG file!")
-    try:
+        print("Created PNG file!", file=sys.stderr)
+
+        protein_name = complete_sbol.replace(instance_url+'public/igem/', '').replace('/1/sbol', '')
         with open(filename, 'r') as htmlfile:
             result = htmlfile.read()
+            result = result.replace("PLUGIN_IP", plugin_ip)
+            result = result.replace("PLUGIN_PORT", plugin_port)
+            result = result.replace("PROTEIN_NAME", protein_name)
       
-        print(result,file=sys.stderr)
-        print("Returning HTML")
+        print("Returning HTML: {}".format(result), file=sys.stderr)
         return result
+
     except Exception as e:
         exc_type, exc_obj, exc_tb = sys.exc_info()
         fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
@@ -86,11 +106,8 @@ def convert_to_png(pdb_filename):
     if os.path.exists("protein.png"):
         os.remove("protein.png")
     pymol.pymol_argv = [ 'pymol', '-qc']
-    #pymol.finish_launching()
     pdb_file =pdb_filename
     pdb_name =pdb_filename
-    #pdb_file ="4ogs.pdb"
-    #pdb_name ="4ogs_pdb"
     pymol.cmd.load(pdb_file, pdb_name)
     pymol.cmd.disable("all")
     pymol.cmd.enable(pdb_name)
