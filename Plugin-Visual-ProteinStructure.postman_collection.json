@@ -114,7 +114,162 @@
 			"response": []
 		},
 		{
+			"name": "http://127.0.0.1:8900/run [tetR]",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"complete_sbol\": \"https://subtest.synbiohub.org/public/igem/GFP/1/sbol\",\n                \"shallow_sbol\": \"https://subtest.synbiohub.org/public/igem/GFP/1/sbolnr\",\n                \"genbank\": \"https://subtest.synbiohub.org/public/igem/GFP/1/gb\",\n                \"top_level\": \"https://synbiohub.org/public/igem/GFP/1\",\n                \"size\": \"5\",\n                \"type\": \"ComponentDefinition\",\n                \"instanceUrl\": \"https://subtest.synbiohub.org/\"\n                }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8900/run",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8900",
+					"path": [
+						"run"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "http://127.0.0.1:8900/run [GFP]",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"complete_sbol\": \"https://subtest.synbiohub.org/public/igem/GFP/1/sbol\",\n                \"shallow_sbol\": \"https://subtest.synbiohub.org/public/igem/GFP/1/sbolnr\",\n                \"genbank\": \"https://subtest.synbiohub.org/public/igem/GFP/1/gb\",\n                \"top_level\": \"https://synbiohub.org/public/igem/GFP/1\",\n                \"size\": \"5\",\n                \"type\": \"ComponentDefinition\",\n                \"instanceUrl\": \"https://subtest.synbiohub.org/\"\n                }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8900/run",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8900",
+					"path": [
+						"run"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8900/run [araC]",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"complete_sbol\": \"https://subtest.synbiohub.org/public/igem/GFP/1/sbol\",\n                \"shallow_sbol\": \"https://subtest.synbiohub.org/public/igem/GFP/1/sbolnr\",\n                \"genbank\": \"https://subtest.synbiohub.org/public/igem/GFP/1/gb\",\n                \"top_level\": \"https://synbiohub.org/public/igem/GFP/1\",\n                \"size\": \"5\",\n                \"type\": \"ComponentDefinition\",\n                \"instanceUrl\": \"https://subtest.synbiohub.org/\"\n                }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8900/run",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8900",
+					"path": [
+						"run"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8900/run [wbdD]",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"complete_sbol\": \"https://subtest.synbiohub.org/public/igem/GFP/1/sbol\",\n                \"shallow_sbol\": \"https://subtest.synbiohub.org/public/igem/GFP/1/sbolnr\",\n                \"genbank\": \"https://subtest.synbiohub.org/public/igem/GFP/1/gb\",\n                \"top_level\": \"https://synbiohub.org/public/igem/GFP/1\",\n                \"size\": \"5\",\n                \"type\": \"ComponentDefinition\",\n                \"instanceUrl\": \"https://subtest.synbiohub.org/\"\n                }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8900/run",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8900",
+					"path": [
+						"run"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8900/run [Rho]",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"complete_sbol\": \"https://subtest.synbiohub.org/public/igem/GFP/1/sbol\",\n                \"shallow_sbol\": \"https://subtest.synbiohub.org/public/igem/GFP/1/sbolnr\",\n                \"genbank\": \"https://subtest.synbiohub.org/public/igem/GFP/1/gb\",\n                \"top_level\": \"https://synbiohub.org/public/igem/GFP/1\",\n                \"size\": \"5\",\n                \"type\": \"ComponentDefinition\",\n                \"instanceUrl\": \"https://subtest.synbiohub.org/\"\n                }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8900/run",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8900",
+					"path": [
+						"run"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8900/run [EXO84]",
 			"request": {
 				"method": "POST",
 				"header": [],
