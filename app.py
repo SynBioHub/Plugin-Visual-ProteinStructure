@@ -37,26 +37,19 @@ def evaluate():
 
 @app.route("/run", methods=["POST"])
 def run():
-    plugin_ip = '127.0.0.1'
-    plugin_port = '8900' #'5000'
+    plugin_ip = request.headers.get('host')#'127.0.0.1'
+    print("plugin_ip{}".format(plugin_ip), file=sys.stderr)
     data = request.get_json(force=True)
 
     print("RECEIVED: {}".format(data), file=sys.stderr)
     complete_sbol = data['complete_sbol']
-    #top_level_url = data['top_level']
     instance_url = data['instanceUrl']
-    #size = data['size']
-    #rdf_type = data['type']
-    #shallow_sbol = data['shallow_sbol']
-
     cwd = os.getcwd()
     filename = os.path.join(cwd, "result_template.html")
 
     try: 
         subtest_sbol_url = complete_sbol.replace('public/igem/', 'download/sbol_').replace('/1/sbol','.xml') # This is temporary.
-        sbol_url = subtest_sbol_url # This is temporary.
-        # When using with synbiohub, we should directly use complete_sbol to download the sbol xml. Uncomment the following line and delete the two lines above.
-        # sbol_url = complete_sbol
+        sbol_url = subtest_sbol_url 
        
         print("Downloading SBOL file: {}".format(sbol_url), file=sys.stderr)
         urllib.request.urlretrieve(sbol_url, "sbol.xml")
@@ -90,7 +83,7 @@ def run():
         with open(filename, 'r') as htmlfile:
             result = htmlfile.read()
             result = result.replace("PLUGIN_IP", plugin_ip)
-            result = result.replace("PLUGIN_PORT", plugin_port)
+#            result = result.replace("PLUGIN_PORT", plugin_port)
             result = result.replace("PROTEIN_NAME", protein_name)
       
         print("Returning HTML: {}".format(result), file=sys.stderr)
