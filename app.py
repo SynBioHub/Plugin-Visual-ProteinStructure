@@ -23,11 +23,19 @@ def evaluate():
     rdf_type = data['type']
 
     # uses rdf types
-    accepted_types = {'ComponentDefinition'}
+    #accepted_types = {'Activity', 'Agent', 'Association', 'Attachment',
+    #                   'Collection', 'CombinatorialDerivation', 'Component',
+    #                   'ComponentDefinition', 'Cut', 'Experiment',
+    #                   'ExperimentalData', 'FunctionalComponent',
+    #                   'GenericLocation', 'Implementation', 'Interaction',
+    #                   'Location', 'MapsTo', 'Measure', 'Model', 'Module',
+    #                   'ModuleDefinition', 'Participation', 'Plan', 'Range',
+    #                   'Sequence', 'SequenceAnnotation', 'SequenceConstraint',
+    #                   'Usage', 'VariableComponent'}
 
-    acceptable = True
-    for curr_type in accepted_types:
-        acceptable = acceptable and (rdf_type == curr_type)
+    accepted_types = {'Component', 'ComponentDefinition'}
+    
+    acceptable = rdf_type in accepted_types
 
     if acceptable:
         return f'The type sent ({rdf_type}) is an accepted type', 200
@@ -57,14 +65,14 @@ def run():
         # Parse the SBOL xml to determine pdb id
         sbol_tree=ET.parse("sbol.xml")
         sbol_root=sbol_tree.getroot()
-        print("Root = {}".format(sbol_root.tag))
-        print("Attrib = {}".format(sbol_root.attrib))
+        print("Root = {}".format(sbol_root.tag), file=sys.stderr)
+        print("Attrib = {}".format(sbol_root.attrib),file=sys.stderr)
 
         for sbol_child in sbol_root:
             if "ComponentDefinition" in sbol_child.tag:
                 for sbol_child_child in sbol_child:
                     if "pdbId" in sbol_child_child.tag:
-                        print("pdb_id: {} - {}".format(sbol_child_child.tag, sbol_child_child.text))
+                        print("pdb_id: {} - {}".format(sbol_child_child.tag, sbol_child_child.text),file=sys.stderr)
                         pdb_id = sbol_child_child.text.lower()
 
 
