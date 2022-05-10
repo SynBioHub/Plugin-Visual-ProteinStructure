@@ -8,6 +8,7 @@ from flask.wrappers import Response
 sys.path.append("/usr/lib/python3/dist-packages")
 import pymol
 import urllib
+from prody import *
 
 app = Flask(__name__, static_url_path = "", static_folder = "./")
 
@@ -46,7 +47,7 @@ def evaluate():
 @app.route("/run", methods=["POST"])
 def run():
     plugin_ip = request.headers.get('host')#'127.0.0.1'
-    print("plugin_ip{}".format(plugin_ip), file=sys.stderr)
+    print("plugin_ip: {}".format(plugin_ip), file=sys.stderr)
     data = request.get_json(force=True)
 
     print("RECEIVED: {}".format(data), file=sys.stderr)
@@ -75,6 +76,40 @@ def run():
                         print("pdb_id: {} - {}".format(sbol_child_child.tag, sbol_child_child.text),file=sys.stderr)
                         pdb_id = sbol_child_child.text.lower()
 
+        for sbol_child in sbol_root:
+            if "Sequence" in sbol_child.tag:
+                for sbol_child_child in sbol_child:
+                    if "elements" in sbol_child_child.tag:
+                        print("elements: {} - {}".format(sbol_child_child.tag, sbol_child_child.text),file=sys.stderr)
+                        sequence = sbol_child_child.text.lower()
+#TODO: save the sequence and PDB_ID in a text file. Check before using prody. 
+        #f=open('blast_pdb.txt', 'w')
+        
+        found_pdb_id = False
+        if os.path.exists("blast_pdb.txt"):
+            f=open('blast_pdb.txt', 'r')
+            for line in f:
+                if sequence in line:
+                    print("Found: {}".format(line), file=sys.stderr)
+                    found_pdb_id = True
+                    pdb_match_line = line
+            f.close()
+
+        if found_pdb_id:
+            pdb_id = pdb_match_line.strip().split(':')[-1]
+            print("pdb_id: {}".format(pdb_id), file=sys.stderr)
+        else:
+            blast_record=blastPDB(sequence)
+            best = blast_record.getBest()
+            pdb_id = best['pdb_id']
+            f=open('blast_pdb.txt', 'w')      
+            f.write(sequence + ":" + pdb_id + "\n")
+            f.close()
+
+        print("Retrieved PDB ID: {}".format(pdb_id), file=sys.stderr)
+
+
+
 
         # Download the pdb file
         pdb_url_base='https://www.ebi.ac.uk/pdbe/entry-files/download/pdb'
@@ -87,14 +122,15 @@ def run():
     
         print("Created PNG file!", file=sys.stderr)
 
-        protein_name = complete_sbol.replace(instance_url+'public/igem/', '').replace('/1/sbol', '')
+#        protein_name = complete_sbol.replace(instance_url+'public/igem/', '').replace('/1/sbol', '')
         with open(filename, 'r') as htmlfile:
             result = htmlfile.read()
             result = result.replace("PLUGIN_IP", plugin_ip)
 #            result = result.replace("PLUGIN_PORT", plugin_port)
-            result = result.replace("PROTEIN_NAME", protein_name)
+#            result = result.replace("PROTEIN_NAME", protein_name)
       
         print("Returning HTML: {}".format(result), file=sys.stderr)
+
         return result
 
     except Exception as e:
@@ -106,13 +142,19 @@ def run():
 def convert_to_png(pdb_filename):
     if os.path.exists("protein.png"):
         os.remove("protein.png")
+    #pymol.pymol_argv = [ 'pymol', '-qcy --gldebug']
     pymol.pymol_argv = [ 'pymol', '-qc']
     pdb_file =pdb_filename
     pdb_name =pdb_filename
-    pymol.cmd.load(pdb_file, pdb_name)
-    pymol.cmd.disable("all")
-    pymol.cmd.enable(pdb_name)
-    pymol.cmd.png("protein.png")
-    pymol.cmd.delete("all")
+    cnt=0;
+    while os.path.exists("protein.png") == False:
+       cnt += 1
+       print("Attempt #{}".format(cnt), file=sys.stderr)
+       pymol.cmd.load(pdb_file, pdb_name)
+       pymol.cmd.disable("all")
+       pymol.cmd.enable(pdb_name)
+       pymol.cmd.png("protein.png")
+       #pymol.cmd.save("protein.png", format='png')
+       pymol.cmd.delete("all")
     os.remove(pdb_filename)
 
