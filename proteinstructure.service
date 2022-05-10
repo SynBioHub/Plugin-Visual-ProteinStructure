@@ -1,0 +1,27 @@
+[Unit]
+Description=VisBOL
+
+# This unitfile depends on the Docker service
+Requires=docker.service network-online.target
+After=docker.service network-online.target
+
+[Service]
+# Pulling the Docker image can take a while, so don't timeout
+TimeoutStartSec=0
+
+Restart=always
+
+# Before starting, stop any existing containers...
+ExecStartPre=-/usr/bin/docker stop %n
+
+# ...remove them...
+ExecStartPre=-/usr/bin/docker rm %n
+
+# ...and pull any new ones.
+ExecStartPre=-/usr/bin/docker pull synbiohub/plugin-visual-proteinstructure:snapshot
+
+ExecStart=/usr/bin/docker run --rm --name %n --publish 8082:5000 synbiohub/plugin-visual-proteinstructure:snapshot
+ExecStop=/usr/bin/docker stop %n
+
+[Install]
+WantedBy=multi-user.target
