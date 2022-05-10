@@ -57,7 +57,7 @@ def run():
     cwd = os.getcwd()
     filename = os.path.join(cwd, "result_template.html")
 
-    data_dir = "/data/"
+    data_dir = "/data"
 
     try: 
         subtest_sbol_url = complete_sbol.replace('public/igem/', 'download/sbol_').replace('/1/sbol','.xml') # This is temporary.
@@ -79,7 +79,8 @@ def run():
                         print("elements: {} - {}".format(sbol_child_child.tag, sbol_child_child.text),file=sys.stderr)
                         sequence = sbol_child_child.text.lower()
         
-        pdb_list_file = data_dir + "blast_pdb.txt"
+        pdb_list_file = os.path.join(data_dir, "blast_pdb.txt")
+        print("pdb_list_file: {}".format(pdb_list_file), file=sys.stderr)
         found_pdb_id = False
         if os.path.exists(pdb_list_file):
             f=open(pdb_list_file, 'r')
@@ -103,41 +104,40 @@ def run():
 
         print("Retrieved PDB ID: {}".format(pdb_id), file=sys.stderr)
 
-        # Download the pdb file
-        pdb_file_name = "protein_"+pdb_id+".pdb"
-        pdb_url_base='https://www.ebi.ac.uk/pdbe/entry-files/download/pdb'
-        pdb_file_url = pdb_url_base + pdb_id + '.ent';
-        print("Downloading pdb file: {}".format(pdb_file_url), file=sys.stderr)
-        urllib.request.urlretrieve(pdb_file_url, pdb_file_name)
+        protein_imagename = os.path.join(data_dir, "protein_"+pdb_id+".png")
+        print("protein_imagename: {}".format(protein_imagename), file=sys.stderr)
 
-        # Check data directory size
-        data_size = subprocess.check_output(['du','-sm', data_dir]).split()[0].decode('utf-8')
-        print("data_size={}".format(data_size), file=sys.stderr)
-        data_files = os.listdir(data_dir)
-        png_files = [os.path.join(data_dir, x) for x in data_files if x.endswith('.png')]
-        if len(png_files) > 0:
-            oldest_png_file = min(png_files, key=os.path.getctime)
-            print("Oldest PNG file: {}".format(oldest_png_file), file=sys.stderr)
+        if not os.path.exists(protein_imagename):
+            # Download the pdb file
+            pdb_file_name = "protein_"+pdb_id+".pdb"
+            pdb_url_base='https://www.ebi.ac.uk/pdbe/entry-files/download/pdb'
+            pdb_file_url = pdb_url_base + pdb_id + '.ent';
+            print("Downloading pdb file: {}".format(pdb_file_url), file=sys.stderr)
+            urllib.request.urlretrieve(pdb_file_url, pdb_file_name)
 
-            data_limit = 1024 # MiB
-            if int(data_size) >= data_limit:
-                print("Deleting oldest PNG file: {}".format(oldest_png_file), file=sys.stderr)
-                #os.remove(oldest_png_file)
+            # Check data directory size
+            data_size = subprocess.check_output(['du','-sm', data_dir]).split()[0].decode('utf-8')
+            print("data_size={}".format(data_size), file=sys.stderr)
+            data_files = os.listdir(data_dir)
+            png_files = [os.path.join(data_dir, x) for x in data_files if x.endswith('.png')]
+            if len(png_files) > 0:
+                oldest_png_file = min(png_files, key=os.path.getctime)
+                print("Oldest PNG file: {}".format(oldest_png_file), file=sys.stderr)
 
-        # Get the png image using pymol
-        convert_to_png(pdb_id)
-    
-        print("Created PNG file!", file=sys.stderr)
+                data_limit = 1024 # MiB
+                if int(data_size) >= data_limit:
+                    print("Deleting oldest PNG file: {}".format(oldest_png_file), file=sys.stderr)
+                    os.remove(oldest_png_file)
+
+            # Get the png image using pymol
+            convert_to_png(pdb_id)
+            print("Created PNG file!", file=sys.stderr)
 
 #        protein_name = complete_sbol.replace(instance_url+'public/igem/', '').replace('/1/sbol', '')
         with open(filename, 'r') as htmlfile:
-            protein_imagename = data_dir + "protein_"+pdb_id+".png"
             result = htmlfile.read()
             result = result.replace("PLUGIN_IP", plugin_ip)
             result = result.replace("PROTEIN_IMAGEFILE", protein_imagename)
-            
-#            result = result.replace("PLUGIN_PORT", plugin_port)
-#            result = result.replace("PROTEIN_NAME", protein_name)
       
         print("Returning HTML: {}".format(result), file=sys.stderr)
 
@@ -150,12 +150,12 @@ def run():
         abort(400, f'Exception is: {e}, exc_type: {exc_type}, exc_obj: {exc_obj}, fname: {fname}, line_number: {lnum}, traceback: {traceback.format_exc()}')
 
 def convert_to_png(pdb_id):
-    data_dir = "/data/"
-    protein_imagename = data_dir + "protein_"+pdb_id+".png"
+    data_dir = "/data"
+    protein_imagename = os.path.join(data_dir, "protein_"+pdb_id+".png")
     pdb_file = "protein_"+pdb_id+".pdb"
     
     if not os.path.exists(protein_imagename):
-        print("Converting PDB to PNG ...", file=sys.stderr)
+        print("Converting PDB to PNG ... {}".format(protein_imagename), file=sys.stderr)
         pymol.pymol_argv = [ 'pymol', '-qc']
         pdb_name = "protein_"+pdb_id+".pdb"   
         pymol.cmd.load(pdb_file, pdb_name)
