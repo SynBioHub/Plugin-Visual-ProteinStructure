@@ -98,7 +98,7 @@ def run():
             blast_record=blastPDB(sequence)
             best = blast_record.getBest()
             pdb_id = best['pdb_id']
-            f=open(pdb_list_file, 'w')      
+            f=open(pdb_list_file, 'a+')      
             f.write(sequence + ":" + pdb_id + "\n")
             f.close()
 
