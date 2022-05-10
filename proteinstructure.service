@@ -20,7 +20,7 @@ ExecStartPre=-/usr/bin/docker rm %n
 # ...and pull any new ones.
 ExecStartPre=-/usr/bin/docker pull synbiohub/plugin-visual-proteinstructure:snapshot
 
-ExecStart=/usr/bin/docker run --rm --name %n --publish 8082:5000 synbiohub/plugin-visual-proteinstructure:snapshot
+ExecStart=/usr/bin/docker run --rm --name %n --publish 8082:5000 --mount source=data,target=/data synbiohub/plugin-visual-proteinstructure:snapshot
 ExecStop=/usr/bin/docker stop %n
 
 [Install]
