@@ -60,9 +60,10 @@ def run():
     data_dir = "/data"
 
     try: 
-        subtest_sbol_url = complete_sbol.replace('public/igem/', 'download/sbol_').replace('/1/sbol','.xml') # This is temporary.
-        sbol_url = subtest_sbol_url 
-       
+        #subtest_sbol_url = complete_sbol.replace('public/igem/', 'download/sbol_').replace('/1/sbol','.xml') # This is temporary.
+        #sbol_url = subtest_sbol_url 
+        sbol_url = complete_sbol
+
         print("Downloading SBOL file: {}".format(sbol_url), file=sys.stderr)
         urllib.request.urlretrieve(sbol_url, "sbol.xml")
 
